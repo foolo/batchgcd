@@ -141,6 +141,12 @@ int main(int argc, char** argv) {
                 duplicates.push_back(IDs[i]);
             } else {
                 compromised.push_back(IDs[i]);
+                mpz_class factor_p = R[i];
+                mpz_class factor_q = input_moduli[i] / R[i];
+                cout << "Compromised modulus ID: " << IDs[i] << endl;
+                cout << "P: " << factor_p.get_str() << endl;
+                cout << "Q: " << factor_q.get_str() << endl;
+                cout << endl;
             }
         }
     }
