@@ -32,6 +32,7 @@
  *  Suggestions/comments/questions are more than welcome: fvial@protonmail.com
  */
 
+#include <sstream>
 #include <getopt.h>
 #include "utils.hpp"
 
@@ -140,13 +141,11 @@ int main(int argc, char** argv) {
             } else if (R[i] == input_moduli[i]) {
                 duplicates.push_back(IDs[i]);
             } else {
-                compromised.push_back(IDs[i]);
                 mpz_class factor_p = R[i];
                 mpz_class factor_q = input_moduli[i] / R[i];
-                cout << "Compromised modulus ID: " << IDs[i] << endl;
-                cout << "P: " << factor_p.get_str() << endl;
-                cout << "Q: " << factor_q.get_str() << endl;
-                cout << endl;
+                std::ostringstream os;
+                os << IDs[i] <<"," << factor_p.get_str() << "," << factor_q.get_str();
+                compromised.push_back(os.str());
             }
         }
     }
